@@ -172,4 +172,9 @@ function unitConverter() {
 }
 
 
-displayBtn.addEventListener('click', unitConverter);
+displayBtn.addEventListener('click', function(e){
+  
+  e.preventDefault()
+  unitConverter()
+
+} );
