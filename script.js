@@ -104,12 +104,72 @@ function unitConverter() {
   let unitTo = document.querySelector('#unitTo').value;
   let convertedNumber = 0;
 
-  if (unitFrom === 'MM' && unitTo === 'M') {
-    convertedNumber = unitInput * 1000;
-    displayResult.textContent = convertedNumber;
+  if (Number.isNaN(unitInput)) {
+    displayResult.textContent = "Skriv inn et gyldig tall.";
+    displayResult.style.color = "red";
+    return;
   }
 
+  // Check if units are the same
+  if (unitFrom === unitTo) {
+    displayResult.textContent = "Velg to ulike målenheter.";
+    displayResult.style.color = "red";
+    return;
+  }
+
+  if (unitFrom === 'MM' && unitTo === 'CM') {
+    convertedNumber = unitInput / 10
+  }
+
+  else if (unitFrom === 'MM' && unitTo === 'M') {
+    convertedNumber = unitInput / 1000;
+  }
+
+  else if (unitFrom === 'MM' && unitTo === 'KM') {
+    convertedNumber = unitInput / 1000000;
+  }
+
+  else if(unitFrom === 'CM' && unitTo === 'MM'){
+    convertedNumber = unitInput * 10
+  }
+
+  else if(unitFrom === 'CM' && unitTo === 'M'){
+    convertedNumber = unitInput /100
+  }
+
+  else if(unitFrom === 'CM' && unitTo === 'KM'){
+    convertedNumber = unitInput / 100000
+  }
+
+  else if(unitFrom === 'M' && unitTo === 'MM'){
+    convertedNumber = unitInput *1000
+  }
+
+  else if(unitFrom === 'M' && unitTo === 'CM'){
+    convertedNumber = unitInput * 100
+  }
+
+  else if(unitFrom === 'M' && unitTo === 'KM'){
+    convertedNumber = unitInput / 1000
+  }
+
+  else if(unitFrom === 'KM' && unitTo === 'MM'){
+    convertedNumber = unitInput * 1000000
+  }
+
+  else if(unitFrom === 'KM' && unitTo === 'CM'){
+    convertedNumber = unitInput *100000
+  }
+
+  else if(unitFrom === 'KM' && unitTo === 'M'){
+    convertedNumber = unitInput * 1000
+  }
+
+  
+
   console.log(convertedNumber);
+  displayResult.textContent = convertedNumber;
 }
+
 
 displayBtn.addEventListener('click', unitConverter);
